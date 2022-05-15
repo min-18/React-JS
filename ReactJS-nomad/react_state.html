@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 꿀팁 하나 배웠다. #(아이디명) + tab 때리면 div 태그 생성. 클래스도 마찬가지 -->
+    <div id="root"></div>
+  </body>
+  <!-- React를 쓰기위해 코드 불러옴. -->
+  <script src="https://unpkg.com/react@18.1.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+  <!-- jsx문법을 react 로 변환 -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel"></script>
+  <script>
+    // 추가로 변수선언할 때 const 와 let 차이
+    // const는 재할당이 안됨. 재할당이 필요없다면 const로 써주는 편이 좋다.
+
+    // App 컴포넌트 ; 리액트의 파워는 전체가 refresh되는 것이 아니라 변경되는 부분만 rerender 된다.
+    function App() {
+      // React.useState() 함수는 숫자데이터 하나와 그 데이터값을 바꾸고 렌더링해주는 함수를 준다.
+      // React.useState() 에서 두번째, modify해주는 함수 이름은 'set+변경할 변수명' 이런 식으로 작성.
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
+      return (
+        <div>
+          <h3>Total Click : {counter}</h3>
+          <button onClick="onClick">Click me</button>
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    //   React 는 interactive 한 UI를 만들 수 있게 하고
+    //   React-dom 은 React 엘레먼트들을 html body에 둘 수 있게 한다.
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
